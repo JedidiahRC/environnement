@@ -1,0 +1,43 @@
+{%extends 'base.html.twig'%}
+
+{% block title %}Rechauffement climatique{% endblock %}
+
+{% block body %}
+{% if articles %}
+<center><h1>LE RECHAUFFEMENT CLIMATIQUE</h1></center>
+<p>Le terme « <b>réchauffement climatique </b> » désigne le <b>phénomène d’augmentation progressive des températures de l’atmosphère et des océans de la Terre</b> mesurées à l’heure actuelle, en plus de son augmentation continue prévue dans le futur.
+Personne ne remet en cause <b>l’augmentation de la température globale</b>, qui génère toujours des controverses quant à son origine et ses raisons. Pourtant, une grande partie de la communauté scientifique considère à 90 % que le <b>réchauffement climatique</b> est du à l’</b>augmentation des concentrations de gaz à effet de serre générés par les activités humaines</b>, y compris la <b>déforestation</b> et les combustibles fossiles tels que le pétrole et le charbon…
+
+</p>
+    <table id="articles" class="table table-striped">
+      <thead>
+        <tr>
+          <th>Titre de l'Article</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for article in articles %}
+          <tr>
+            <td><h2>{{ article.title }}</h2></td>
+            <td>
+              <a href="/article/{{article.id}}" 
+              class="btn btn-dark">Voir</a>
+              <a href="/article/edit/{{article.id}}" 
+              class="btn btn-light">Modiffier</a>
+              <a href="#" 
+              class="btn btn-danger delete-article"
+              data-id="{{article.id}}">Supprimer</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% else %}
+    <p>No articles to display</p>
+  {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+<script src="/js/main.js"></script>
+{% endblock %}
